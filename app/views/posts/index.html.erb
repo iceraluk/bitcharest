@@ -1,0 +1,25 @@
+<div id="content">
+  <% @posts.each do |post| %>
+     <!--   <#%= post.title %>
+        <#%= post.text %>
+        <#%= link_to 'Show', post_path(post) %>
+        <#%= link_to 'Edit', edit_post_path(post) %>
+        <#%= link_to 'Destroy', post_path(post),
+                        method: :delete, data: { confirm: 'Are you sure?' } %>   -->
+        <div class="post">
+            <a href="<%=post_path(post)%>"  class =  "hcaption" data-target ="#myToggle<%=post.id%>" cap-effect="fade"><%= image_tag(post.image, :class => "post_image")%></a>
+            <a href="<%=post_path(post)%>">
+                <div id="myToggle<%=post.id%>" class="hide post-content">
+                    <div class="title">
+                        <%= post.title %>
+                    </div>
+                    <div class="post-caption">
+                        <%= post.text%>
+                    </div>
+                </div>
+            </a>
+        </div>
+  <% end %>
+
+<%= link_to "New", new_post_path %>
+</div>

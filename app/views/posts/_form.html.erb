@@ -1,0 +1,40 @@
+<%= form_for :post, url: posts_path do |f| %>
+    <% if @post.errors.any? %>
+        <div id="errorExplanation">
+          <h2><%= pluralize(@post.errors.count, "error") %> prohibited
+            this post from being saved:</h2>
+          <ul>
+            <% @post.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+
+    <p>
+      <%= f.label :image %><br>
+    <div class="fileupload fileupload-new" data-provides="fileupload">
+      <div class="fileupload-preview thumbnail" style="width: 200px; height: 150px;"><%= image_tag @post.image, :style => "height:200px;" %></div>
+      <div>
+        <span class="btn btn-file"><span class="fileupload-new">Select image</span><span class="fileupload-exists">Change</span><%= f.file_field :image %>  <%= f.hidden_field :image_cache %></span>
+        <a href="#" class="btn fileupload-exists" data-dismiss="fileupload">Remove</a>
+      </div>
+    </div>
+
+    <p>
+      <%= f.label :text %><br>
+      <%= f.text_area :text, :id => "post-textarea" %>
+    </p>
+    <script type="text/javascript">
+        $('#post-textarea').wysihtml5();
+    </script>
+
+    <p>
+      <%= f.label :category %><br>
+      <%= f.text_field :category %>
+    </p>
+
+    <p>
+      <%= f.submit %>
+    </p>
+<% end %>
